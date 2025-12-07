@@ -15,11 +15,9 @@
         <div class="name-group">
             <div class="form-input-half">
                 <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" placeholder="山田" required>
-                <span class="input-example">姓</span>
             </div>
             <div class="form-input-half">
                 <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" placeholder="太郎" required>
-                <span class="input-example">名</span>
             </div>
         </div>
     </div>
@@ -49,11 +47,19 @@
         </div>
     </div>
 
-    <div class="form-group required">
-        <label for="tel" class="form-label">電話番号</label>
-        <div class="form-input-wrapper">
-            <input type="tel" id="tel" name="tel" value="{{ old('tel') }}" placeholder="09012345678" required>
+    <div class="form-row">
+        <div class="form-label">電話番号</div>
+        <div class="form-input-split">
+            <input type="text" name="tel1" value="{{ old('tel1') }}" maxlength="5" placeholder="090" required>
+            <span>-</span>
+            <input type="text" name="tel2" value="{{ old('tel2') }}" maxlength="5" placeholder="1234" required>
+            <span>-</span>
+            <input type="text" name="tel3" value="{{ old('tel3') }}" maxlength="5" placeholder="5678" required>
         </div>
+
+        @error('tel1') <div class="validation-error">{{ $message }}</div> @enderror
+        @error('tel2') <div class="validation-error">{{ $message }}</div> @enderror
+        @error('tel3') <div class="validation-error">{{ $message }}</div> @enderror
     </div>
 
     <div class="form-group required">

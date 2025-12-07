@@ -1,0 +1,199 @@
+.body {
+    font-family: serif;
+    background-color: #F7F3ED;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.admin-header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-app-name {
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: normal;
+    text-align: center;
+    margin: 30px 0 40px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    margin-bottom: 30px;
+}
+
+.form-group-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.form-group {
+    flex-grow: 1;
+    min-width: 100px;
+}
+
+.input-field {
+    width: 100%;
+    height: 40px;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.select-field {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="%238B7D73" d="M4.5 6l3.5 4 3.5-4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+}
+
+.button {
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.button-primary {
+    background-color: #8B7D73;
+    color: #fff;
+    border: 1px solid #8B7D73;
+}
+
+.button-primary:hover {
+    background-color: #72645A;
+}
+
+.button-secondary,
+.button-export {
+    background-color: #fff;
+    color: #8B7D73;
+    border: 1px solid #8B7D73;
+}
+
+.button-secondary:hover,
+.button-export:hover {
+    background-color: #f0f0f0;
+}
+
+.button-detail {
+    background-color: #F7F3ED;
+    color: #8B7D73;
+    border: 1px solid #8B7D73;
+    padding: 5px 12px;
+    font-size: 12px;
+}
+
+.button-detail:hover {
+    background-color: #E6E1D9;
+}
+
+.actions-and-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.pagination-info {
+    font-size: 14px;
+    color: #666;
+}
+
+.pagination-info nav {
+    display: inline-flex;
+    margin-left: 10px;
+    align-items: center;
+}
+
+.pagination-info nav a,
+.pagination-info nav span {
+    padding: 4px 8px;
+    border: 1px solid #8B7D73;
+    color: #8B7D73;
+    margin: 0 2px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 12px;
+    background-color: #fff;
+}
+
+.pagination-info nav span:not([aria-current]) {
+    background-color: #fff;
+}
+
+.pagination-info nav span[aria-current] {
+    background-color: #8B7D73;
+    color: #fff;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-header {
+    background-color: #8B7D73;
+    /* 濃い茶色 */
+    color: #fff;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.table-row:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-data {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #555;
+    white-space: nowrap;
+}
+
+.table-row:last-child .table-data {
+    border-bottom: none;
+}

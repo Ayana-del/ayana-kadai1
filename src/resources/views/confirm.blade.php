@@ -22,7 +22,7 @@ default => '未選択',
 
 <h2 class="form-subtitle">Confirm</h2>
 
-<form action="{{ route('contact.send') }}" method="POST" class="contact-form">
+<form action="{{ route('contact.confirm') }}" method="POST" class="contact-form">
     @csrf
 
     @foreach($contact as $key => $value)
@@ -75,7 +75,7 @@ default => '未選択',
     </div>
 
     <div class="form-actions">
-        <button type="submit" class="submit-button">送信</button>
+        <button type="submit" name="action" value="send" class="submit-button">送信</button>
         <button type="submit" name="back" class="back-button" value="1">修正</button>
     </div>
 </form>
