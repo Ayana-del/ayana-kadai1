@@ -39,4 +39,19 @@ class AdminContactController extends Controller
             'contact' => $contact,
         ]);
     }
+
+    /**
+     * 指定されたお問い合わせを削除する
+     *
+     * @param Contact $contact
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public final function destroy(Contact $contact)
+    {
+        $contact->delete();
+
+        session()->flash('success_message', 'お問い合わせを削除しました。');
+
+        return redirect()->route('admin.contacts.index');
+    }
 }

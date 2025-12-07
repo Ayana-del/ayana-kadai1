@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Database\Seeders\CategoryTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,8 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            CategoryTableSeeder::class,
-        ]);
+        $this->call(CategorySeeder::class);
+        \App\Models\Contact::factory(35)->create();
+
+        \App\Models\User::factory(10)->create();
     }
 }

@@ -1,4 +1,4 @@
-version: '3.8'
+
 
 services:
   nginx:
@@ -13,8 +13,6 @@ services:
 
   php:
     build: ./docker/php
-    ports:
-      - "8000:8000"
     volumes:
       - ./src:/var/www/
     user: "1000:1000"

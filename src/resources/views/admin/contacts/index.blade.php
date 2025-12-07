@@ -1,3 +1,5 @@
+@extends('layouts.common')
+
 @section('title', 'Admin | FashionablyLate')
 
 @section('styles')
@@ -7,6 +9,13 @@
 @section('content')
 <div class="container">
     <h2 class="page-title">Admin</h2>
+
+    {{-- 成功メッセージの表示を追加 --}}
+    @if (session('success_message'))
+    <div class="alert alert-success">
+        {{ session('success_message') }}
+    </div>
+    @endif
 
     {{-- 検索フォーム --}}
     <form method="GET" action="{{ route('admin.contacts.index') }}" class="search-form card">
@@ -89,8 +98,19 @@
                     <td class="table-data email-cell">{{ $contact->email }}</td>
                     <td class="table-data category-cell">{{ $contact->category->content ?? '-' }}</td>
                     <td class="table-data detail-cell">
-                        {{-- 詳細ボタン --}}
-                        <button type="button" class="button button-detail">
+                        <button type="button" class="button button-detail"
+                            data-contact='@json([
+                            ' id'=> $contact->id,
+                            'full_name' => $contact->last_name . ' ' . $contact->first_name,
+                            'gender' => ($contact->gender == 1) ? '男性' : (($contact->gender == 2) ? '女性' : '不明'),
+                            'email' => $contact->email,
+                            'tel' => $contact->tel,
+                            'address' => $contact->address,
+                            'building' => $contact->building ?? '-',
+                            'category_content' => $contact->category->content ?? 'カテゴリなし',
+                            'detail' => $contact->detail,
+                            'created_at' => $contact->created_at->format('Y/m/d H:i')
+                            ])'>
                             詳細
                         </button>
                     </td>
