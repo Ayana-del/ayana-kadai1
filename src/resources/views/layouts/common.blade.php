@@ -34,7 +34,7 @@
                             $currentRoute = Route::currentRouteName();
                             @endphp
 
-                            @if ($currentRoute !== 'login')
+                            @if ($currentRoute !== 'login' && $currentRoute !== 'contact.index')
                             <form action="{{ route('login') }}" method="GET">
                                 <button class="header-nav__button">login</button>
                             </form>

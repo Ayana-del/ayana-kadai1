@@ -129,3 +129,42 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('detailModal');
+        const closeModal = document.getElementById('closeModal');
+        const detailButtons = document.querySelectorAll('.button-detail');
+
+        // モーダルを閉じる関数
+        function hideModal() {
+            modal.style.display = 'none';
+        }
+
+        detailButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // JSONデータを取り出しパース
+                const contactData = JSON.parse(this.getAttribute('data-contact'));
+
+                // モーダル内の要素にデータをセット
+                document.getElementById('modal-id').textContent = contactData.id;
+                document.getElementById('modal-full-name').textContent = contactData.full_name;
+                // ... 他の要素にもデータをセット
+                document.getElementById('modal-detail').textContent = contactData.detail;
+
+                // モーダルを表示
+                modal.style.display = 'flex';
+            });
+        });
+
+        // 閉じるボタンと背景クリックで閉じる処理
+        closeModal.addEventListener('click', hideModal);
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+    });
+</script>
+@endsection

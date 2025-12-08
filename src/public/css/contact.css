@@ -1,131 +1,242 @@
-/*サブタイトル*/
+/* contact.css */
+
+/* --- ページ全体 --- */
+.container {
+    max-width: 1000px;
+    padding: 60px 20px;
+    color: #8b7a67;
+}
+
 .form-subtitle {
-    text-align: center;
-    font-size: 2.5em;
-    /* 大きめの文字サイズ */
-    font-weight: bold;
-    margin-top: 40px;
-    margin-bottom: 50px;
-    color: #333;
-}
-
-/*フォーム要素の基本レイアウト*/
-.form-group {
-    align-items: flex-start;
-    margin-bottom: 25px;
-}
-
-.form-label {
-    flex-basis: 35%;
-    font-size: 1em;
+    font-size: 32px;
     font-weight: normal;
-    padding-top: 10px;
-    color: #333;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #8b7a67;
+    /* FashionablyLateと同じ茶色 */
 }
 
-.form-input-wrapper,
-.name-group {
-    flex-basis: 65%;
+/* --- フォームグループ --- */
+.contact-form {
+    padding: 30px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    /* デザイン画像にシャドウがないように見えるため、削除または薄くする */
+    box-shadow: none;
+}
+
+.form-group,
+.form-row {
     display: flex;
+    /* ラベルと入力欄を横並びにする */
+    align-items: flex-start;
+    /* ラベルと入力欄の開始位置を合わせる */
+    margin-bottom: 35px;
     flex-wrap: wrap;
-    align-items: center;
 }
 
-/*必須マークの装飾*/
-.form-group.required .form-label::after {
-    content: " ※";
-    color: #cc6666;
-    font-size: 0.8em;
-    vertical-align: top;
-    margin-left: 5px;
-}
-
-/*個別フィールドのスタイル*/
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-select,
-textarea {
-width: 100%;
-    padding: 10px 15px;
-    border: none;
-    background-color: #f5f5f5;
-    border-radius: 3px;
-    font-size: 1em;
-    color: #333;
+/* --- ラベル（左側）--- */
+.form-label {
+    width: 35%;
+    /* ラベルの幅を固定 */
+    min-width: 150px;
+    /* 最小幅を確保し、折り返しを防ぐ */
+    font-size: 16px;
+    font-weight: normal;
+    padding-right: 20px;
+    padding-top: 10px;
+    /* 入力欄のパディングに合わせて調整 */
     box-sizing: border-box;
 }
 
-textarea {
-    height: 120px;
-    resize: none;
-    padding-top: 15px;
+/* 必須マーク（赤色のアスタリスク）のスタイル */
+.form-group.required .form-label::after {
+    content: "※";
+    color: #e57373;
+    /* 明るい赤色 */
+    margin-left: 5px;
+    font-size: 14px;
 }
 
-:placeholder {
-    color: #aaa;
-}
 
-/*名前フィールドの調整*/
-.name-group {
-    display: flex;
-    gap: 15px;
+/* --- 入力欄（右側）--- */
+.form-input-wrapper,
+.name-group,
+.form-input-split {
+    flex-grow: 1;
+    /* 残りのスペースを全て使用 */
+    /* ラベルのpadding-topに合わせて、入力欄のコンテナを上部に寄せます */
     align-items: flex-start;
 }
 
-.form-input-half {
-    display: flex;
-    flex-direction: column;
-    flex-basis: calc(50% - 7.5px);
+/* テキスト入力フィールド、テキストエリア、セレクトボックスの基本スタイル */
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    /* デザイン画像に合わせて枠線を削除 */
+    background-color: #e0e0e0;
+    /* 薄いグレーの背景 */
+    border-radius: 3px;
+    font-size: 15px;
+    box-sizing: border-box;
+    color: #333;
+    outline: none;
+    /* デザイン画像の高さに合わせるため、heightを設定しても良い */
+    height: 40px;
 }
 
-.input-example {
-    font-size: 0.8em;
+textarea {
+    height: auto;
+    /* textareaは自動の高さに戻す */
+    min-height: 100px;
+    padding: 10px;
+}
+
+input::placeholder,
+textarea::placeholder {
     color: #aaa;
-    margin-top: 5px;
-    display: block;
-    padding-left: 5px;
+    font-size: 14px;
 }
 
-/*性別フィールドの調整*/
+/* --- お名前欄の分割 --- */
+.name-group {
+    display: flex;
+    gap: 15px;
+}
+
+.form-input-half {
+    flex: 1;
+}
+
+/* --- 性別ラジオボタン --- */
 .gender-radios {
-    padding-top: 8px;
+    /* ラジオボタンをフォーム開始位置に合わせるため、align-itemsをflex-startに */
+    display: flex;
+    align-items: flex-start;
+    padding-top: 10px;
+    /* ラベルのパディングに合わせて調整 */
 }
 
 .gender-radios label {
-    margin-right: 25px;
-    color: #333;
-    font-size: 1em;
+    margin-right: 20px;
+    display: inline-flex;
+    align-items: center;
     cursor: pointer;
 }
 
-/*お問い合わせの種類*/
-select {
+.gender-radios input[type="radio"] {
+    /* ラジオボタンのカスタムデザイン（デザイン画像に合わせて丸い色を再現） */
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
     appearance: none;
-    -webkit-appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    padding-right: 35px;
+    border: 1px solid #333;
+    /* 枠線を濃い色に */
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    position: relative;
+    top: 1px;
 }
 
-/*確認画面ボタン*/
+.gender-radios input[type="radio"]:checked {
+    background-color: #333;
+    border-color: #333;
+    /* 選択された際の茶色い丸を再現するため、以下のスタイルを適用 */
+    background-color: #8b7a67;
+    border-color: #8b7a67;
+}
+
+
+/* --- 電話番号の分割（1行表示）--- */
+/* .form-row に display: flex が適用されているため、このままでは入力欄の下にエラーメッセージが縦に並びます */
+
+.form-input-split {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.form-input-split input {
+    width: calc(33.33% - 10px);
+    text-align: center;
+    margin: 0;
+}
+
+.form-input-split span {
+    margin: 0 5px;
+    color: #666;
+}
+
+/* --- バリデーションエラーを電話番号の入力欄と同じ行に配置する修正 --- */
+/* HTMLでエラーが .form-row の直下にあるため、ここで電話番号の横に配置します */
+.form-row {
+    flex-wrap: wrap;
+    /* 子要素を折り返す */
+}
+
+/* エラーメッセージが入力欄の幅に合わせて右側に表示されるように調整 */
+.validation-error {
+    color: #e57373;
+    font-size: 14px;
+    margin-top: 5px;
+    width: 65%;
+    margin-left: 35%;
+}
+
+.name-group .form-input-half .validation-error {
+    width: 100%;
+    margin-left: 0;
+}
+
+.form-row .validation-error {
+    width: calc(65% - 20px);
+    margin-left: 35%;
+}
+
+/* --- 確認画面ボタン --- */
 .form-actions {
     text-align: center;
     margin-top: 50px;
 }
 
 .submit-button {
-    padding: 12px 40px;
-    font-size: 1.1em;
+    background-color: #8b7a67;
+    /* 薄い茶色に変更 */
     color: #fff;
-    background-color: #777;
     border: none;
-    border-radius: 3px;
+    padding: 10px 40px;
+    font-size: 16px;
     cursor: pointer;
+    border-radius: 3px;
     transition: background-color 0.3s;
 }
 
 .submit-button:hover {
-    background-color: #555;
+    background-color: #a39785;
+}
+
+.form-input-split {
+    display: flex;
+    align-items: flex-start;
+    /* エラーが出ても入力欄が動かないように */
+    flex-grow: 1;
+}
+
+.form-input-third {
+    /* 電話番号の3分割領域 */
+    flex: 1;
+    /* エラーメッセージが縦に並ばないよう、このコンテナ内で flex-wrap: wrap; は不要 */
+}
+
+.form-input-split .validation-error {
+    /* 電話番号のエラーは input の直下に配置されるため、親要素の幅に合わせる */
+    width: 100%;
+    margin-left: 0;
+    /* マージンをリセット */
+    /* 電話番号のエラーは input の下に表示されます */
 }
