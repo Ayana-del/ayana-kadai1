@@ -26,7 +26,7 @@ OS:macOS
   
 リポジトリのクローン  
 ```bash
-git clone git@github.com:git@github.com:Ayana-del/ayana-kadai1.git
+git clone git clone git@github.com:Ayana-del/ayana-kadai1.git
 ```  
 ```bash  
 cd ayana-kadai1
@@ -41,7 +41,7 @@ docker-compose exec php bash
 ```  
 依存パッケージのインストール
 ```bash
-composers install
+composer install
 ```  
 環境ファイルのコピー  
 ```bash
@@ -58,7 +58,7 @@ php artisan migrate:fresh --seed
 ```  
   
   
-##　アクセス  
+### アクセス  
 アプリケーションは以下のURLでアクセス可能です。  
 | 画面 | URL |  
 | **データベース管理** | 'http://localhost'  
@@ -66,7 +66,7 @@ php artisan migrate:fresh --seed
 | **確認画面** | 'http://localhost/confirm/' |  
   
   
-##　現在の実装機能  
+###　現在の実装機能  
   
 現在のコミットで以下の機能が実装され、動作確認が完了しています。  
 ### 1.お問い合わせ入力画面('/')  
@@ -95,7 +95,9 @@ php artisan migrate:fresh --seed
 READ
 ###　これからの実装と修正  
 * **デザイン調整**:全画面のデザインは最後に調整  
-* **nginx確認**:nginxコンテナの確認（現在、画面表示不可状態）  
+* **ダミーデータの投入**:35件  
+* **認証機能の確認**:会員登録画面・ログイン画面  
+* **管理画面の作成**:検索(名前/メール・性別・お問い合わせの種類・日付カレンダー)・リセット・エクスポート・ページネーション・モーダル表示
 ## ER 図
 
 ![ER図](ER.drawio.png)
