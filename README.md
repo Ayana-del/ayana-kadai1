@@ -61,7 +61,7 @@ php artisan migrate:fresh --seed
 ### アクセス  
 アプリケーションは以下のURLでアクセス可能です。  
 | 画面 | URL |  
-| **データベース管理** | 'http://localhost'  
+| **データベース管理** | 'http://localhost:8080'  
 | **入力画面** | 'http://localhost/' |  
 | **確認画面** | 'http://localhost/confirm/' |  
 | **ログイン画面** | 'http://localhost/login/' |  
