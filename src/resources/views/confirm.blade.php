@@ -76,7 +76,7 @@ default => '未選択',
 
     <div class="form-actions">
         <button type="submit" name="action" value="send" class="submit-button">送信</button>
-        <button type="submit" name="back" class="back-button" value="1">修正</button>
+        <button type="submit" name="back" value="1" class="back-button">修正</button>
     </div>
 </form>
 @endsection

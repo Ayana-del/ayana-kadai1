@@ -34,11 +34,23 @@
                             $currentRoute = Route::currentRouteName();
                             @endphp
 
-                            @if ($currentRoute !== 'login' && $currentRoute !== 'contact.index')
+                            @if ($currentRoute === 'register')
                             <form action="{{ route('login') }}" method="GET">
-                                <button class="header-nav__button">login</button>
+                                <button class="header-nav__button">Login</button>
+                            </form>
+
+                            @elseif ($currentRoute === 'login')
+                            <form action="{{ route('register') }}" method="GET">
+                                <button class="header-nav__button">Register</button>
+                            </form>
+
+                            @elseif (!in_array($currentRoute, ['contact.index', 'contact.confirm', 'contact.thanks']))
+                            <form action="{{ route('login') }}" method="GET">
+                                <button class="header-nav__button">Login</button>
                             </form>
                             @endif
+
+                            {{-- ★★★ 修正箇所 終わり ★★★ --}}
                             @endguest
                         </li>
                     </ul>

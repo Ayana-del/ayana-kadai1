@@ -6,64 +6,58 @@
 @endsection
 
 @section('content')
-<div class="register-form__content">
-    <div class="register-form__heading">
-        <h2>Register</h2>
+<div class="auth-container">
+    <h2 class="form-subtitle">Register</h2>
+    <div class="auth-card">
+        <form class="form contact-form" method="POST" action="{{ route('register') }}">
+            @csrf
+
+            {{-- ★ 修正箇所 1: お名前フィールドをシンプルな form-group に変更 ★ --}}
+            <div class="form-group">
+                <label for="name" class="form-label">お名前</label>
+                <div class="form-input-wrapper">
+                    <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="山田 太郎" required autofocus>
+                    @error('name')
+                    <div class="validation-error">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            {{-- ★ 修正箇所 2: メールアドレスフィールドを変更 ★ --}}
+            <div class="form-group">
+                <label for="email" class="form-label">メールアドレス</label>
+                <div class="form-input-wrapper">
+                    <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="test@example.com" required>
+                    @error('email')
+                    <div class="validation-error">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            {{-- ★ 修正箇所 3: パスワードフィールドを変更 ★ --}}
+            <div class="form-group">
+                <label for="password" class="form-label">パスワード</label>
+                <div class="form-input-wrapper">
+                    <input id="password" type="password" name="password" required autocomplete="new-password" placeholder="coachtech1106">
+                    @error('password')
+                    <div class="validation-error">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            {{-- ★ 修正箇所 4: パスワード確認フィールドを変更 ★ --}}
+            <div class="form-group">
+                <label for="password_confirmation" class="form-label">パスワード確認</label>
+                <div class="form-input-wrapper">
+                    <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="coachtech1106">
+                    @error('password_confirmation') <div class="validation-error">{{ $message }}</div> @enderror
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-button">登録</button>
+            </div>
+        </form>
     </div>
-
-    <form class="form" method="POST" action="{{ route('register') }}">
-        @csrf
-
-        <div class="form__group">
-            <div class="form__group-title">
-                <span class="form__label--item">お名前</span>
-            </div>
-            <div class="name-group">
-                <div class="form-input-wrapper">
-                    <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" placeholder="山田" required>
-                    @error('last_name') <div class="validation-error">{{ $message }}</div> @enderror
-                </div>
-                <div class="form-input-wrapper">
-                    <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" placeholder="太郎" required>
-                    @error('first_name') <div class="validation-error">{{ $message }}</div> @enderror
-                </div>
-            </div>
-        </div>
-
-        <div class="form__group">
-            <div class="form__group-title">
-                <span class="form__label--item">メールアドレス</span>
-            </div>
-            <div class="form-input-wrapper">
-                <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="test@example.com" required>
-                @error('email') <div class="validation-error">{{ $message }}</div> @enderror
-            </div>
-        </div>
-
-        <div class="form__group">
-            <div class="form__group-title">
-                <span class="form__label--item">パスワード</span>
-            </div>
-            <div class="form-input-wrapper">
-                <input id="password" type="password" name="password" required autocomplete="new-password" placeholder="coachtech1106">
-                @error('password') <div class="validation-error">{{ $message }}</div> @enderror
-            </div>
-        </div>
-
-        {{-- 追加: パスワード確認 (Fortifyの必須項目) --}}
-        <div class="form__group">
-            <div class="form__group-title">
-                <span class="form__label--item">パスワード確認</span>
-            </div>
-            <div class="form-input-wrapper">
-                <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="coachtech1106">
-                @error('password_confirmation') <div class="validation-error">{{ $message }}</div> @enderror
-            </div>
-        </div>
-
-        <div class="form__actions">
-            <button type="submit" class="submit-button">登録</button>
-        </div>
-    </form>
 </div>
 @endsection

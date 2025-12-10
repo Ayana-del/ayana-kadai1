@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Laravel\Fortify\Contracts\LoginViewResponse;
+use Laravel\Fortify\Contracts\RegisterViewResponse;
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
@@ -41,6 +43,24 @@ class FortifyServiceProvider extends ServiceProvider
 
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
+        });
+
+        $this->app->singleton(LoginViewResponse::class, function ($app) {
+            return new class implements LoginViewResponse {
+                public function toResponse($request)
+                {
+                    return view('auth.login');
+                }
+            };
+        });
+
+        $this->app->singleton(RegisterViewResponse::class, function ($app) {
+            return new class implements RegisterViewResponse {
+                public function toResponse($request)
+                {
+                    return view('auth.register');
+                }
+            };
         });
     }
 }

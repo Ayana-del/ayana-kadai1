@@ -19,9 +19,17 @@ class ContactController extends Controller
 
     public function confirmOrSend(ContactRequest $request)
     {
+        if ($request->method() === 'GET') {
+            $request->session()->forget('contact_data');
+            return redirect()->route('contact.index');
+        }
+
         if($request->has('back')){
 
-            return redirect('/')->withInput($request->session()->get('contact_data'));
+            $contactData = $request->session()->get('contact_data');
+            $request->session()->forget('contact_data');
+
+            return redirect()->route('contact.index')->withInput($contactData);
         }
 
         $contactData = $request->session()->get('contact_data');
@@ -42,12 +50,9 @@ class ContactController extends Controller
         $tel_full = $validatedData['tel1'] . $validatedData['tel2'] . $validatedData['tel3'];
         $validatedData['tel'] = $tel_full;
 
-        unset($validatedData['tel1']);
-        unset($validatedData['tel2']);
-        unset($validatedData['tel3']);
 
         $request->session()->put('contact_data', $validatedData);
-        
+
         $categoryName = Category::find($validatedData['category_id'])->content;
 
         return view('confirm', [

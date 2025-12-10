@@ -9,19 +9,16 @@ use App\Http\Controllers\AdminContactController;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
 
 Route::get('/', [ContactController::class, 'index'])->name('contact.index');
-Route::post('/confirm',[ContactController::class,'confirmOrSend'])->name('contact.confirm');
+Route::match(['get', 'post'], '/confirm', [ContactController::class, 'confirmOrSend'])->name('contact.confirm');
 Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
 
+
 Route::middleware(['auth', 'can:admin'])->prefix('admin')->group(function () {
+    Route::redirect('/', '/admin/contacts')->name('admin.index');
     Route::get('/contacts/reset', [AdminContactController::class, 'reset'])->name('admin.contacts.reset');
     Route::get('/contacts', [AdminContactController::class, 'index'])->name('admin.contacts.index');
     Route::get('/export', [AdminContactController::class, 'export'])->name('admin.export');
