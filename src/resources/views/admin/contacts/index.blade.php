@@ -10,22 +10,18 @@
 <div class="container">
     <h2 class="page-title">Admin</h2>
 
-    {{-- 成功メッセージの表示を追加 --}}
     @if (session('success_message'))
     <div class="alert alert-success">
         {{ session('success_message') }}
     </div>
     @endif
 
-    {{-- 検索フォーム --}}
     <form method="GET" action="{{ route('admin.contacts.index') }}" class="search-form card">
         <div class="form-group-wrap">
-            {{-- 名前/メールアドレス検索 --}}
             <div class="form-group">
                 <input type="text" name="name_or_email" id="name_or_email" placeholder="名前やメールアドレスを入力してください"
                     value="{{ request('name_or_email') }}" class="input-field name-email-field">
             </div>
-            {{-- 性別検索 --}}
             <div class="form-group">
                 <select name="gender" id="gender" class="input-field select-field">
                     <option value="">性別 ▼</option>
@@ -33,7 +29,6 @@
                     <option value="2" {{ request('gender') == '2' ? 'selected' : '' }}>女性</option>
                 </select>
             </div>
-            {{-- お問い合わせ種類検索 --}}
             <div class="form-group">
                 <select name="category" id="category" class="input-field select-field">
                     <option value="">お問い合わせの種類 ▼</option>
@@ -44,36 +39,30 @@
                     @endforeach
                 </select>
             </div>
-            {{-- 日付検索 --}}
             <div class="form-group">
                 <input type="date" name="date" id="date" value="{{ request('date') }}"
                     class="input-field date-field" placeholder="年月日">
             </div>
 
-            {{-- 検索ボタン --}}
             <button type="submit" class="button button-primary search-button">
                 検索
             </button>
-            {{-- リセットボタン --}}
             <a href="{{ route('admin.contacts.index') }}" class="button button-secondary reset-button">
                 リセット
             </a>
         </div>
     </form>
 
-    {{-- エクスポートとページネーション --}}
     <div class="actions-and-pagination">
         <button class="button button-export">
             エクスポート
         </button>
         <div class="pagination-info">
             <span>全 {{ $contacts->total() }} 件中、{{ $contacts->firstItem() }} 〜 {{ $contacts->lastItem() }} 件</span>
-            {{-- ページネーションリンク --}}
             {{ $contacts->appends(request()->except('page'))->links('vendor.pagination.simple-tailwind') }}
         </div>
     </div>
 
-    {{-- 顧客テーブル --}}
     <div class="table-container card">
         <table>
             <thead>
@@ -89,7 +78,6 @@
                 @foreach ($contacts as $contact)
                 <tr class="table-row">
                     <td class="table-data">{{ $contact->last_name . ' ' . $contact->first_name }}</td>
-                    {{-- gender: 1=男性, 2=女性 --}}
                     <td class="table-data">
                         @if(isset($contact->gender))
                         @if($contact->gender == 1) 男性 @elseif($contact->gender == 2) 女性 @else - @endif
@@ -136,29 +124,36 @@
         const modal = document.getElementById('detailModal');
         const closeModal = document.getElementById('closeModal');
         const detailButtons = document.querySelectorAll('.button-detail');
+        const deleteForm = document.getElementById('delete-form');
 
-        // モーダルを閉じる関数
+        const deleteRouteTemplate = '{{ route("admin.contacts.destroy", ["contact" => "TEMP_ID"]) }}';
+
         function hideModal() {
             modal.style.display = 'none';
         }
 
         detailButtons.forEach(button => {
             button.addEventListener('click', function() {
-                // JSONデータを取り出しパース
+
                 const contactData = JSON.parse(this.getAttribute('data-contact'));
 
-                // モーダル内の要素にデータをセット
                 document.getElementById('modal-id').textContent = contactData.id;
                 document.getElementById('modal-full-name').textContent = contactData.full_name;
-                // ... 他の要素にもデータをセット
-                document.getElementById('modal-detail').textContent = contactData.detail;
 
-                // モーダルを表示
+                document.getElementById('modal-gender').textContent = contactData.gender;
+                document.getElementById('modal-email').textContent = contactData.email;
+                document.getElementById('modal-tel').textContent = contactData.tel;
+                document.getElementById('modal-address').textContent = contactData.address;
+                document.getElementById('modal-building').textContent = contactData.building;
+                document.getElementById('modal-category-content').textContent = contactData.category_content;
+
+                document.getElementById('modal-detail').textContent = contactData.detail;
+                deleteForm.action = deleteRouteTemplate.replace('TEMP_ID', contactData.id);
+
                 modal.style.display = 'flex';
             });
         });
 
-        // 閉じるボタンと背景クリックで閉じる処理
         closeModal.addEventListener('click', hideModal);
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
