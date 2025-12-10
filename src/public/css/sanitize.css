@@ -1,0 +1,54 @@
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1.15;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dd,figure,pre {
+    margin: 0;
+}
+
+ul,ol {
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    border-style: none;
+    max-width: 100%;
+    height: auto;
+    vertical-align: top;
+}
+
+button,input,optgroup,select,textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+button {
+    overflow: visible;
+}
+
+textarea {
+    overflow: auto;
+    resize: vertical;
+}

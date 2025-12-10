@@ -1,8 +1,6 @@
 body {
     font-family: 'Times New Roman', Times, serif;
-    /* セリフ体に近いフォントを使用 */
     background-color: #f7f7f7;
-    /* 背景は薄いグレー */
     color: #333;
     line-height: 1.6;
     margin: 0;
@@ -18,7 +16,6 @@ body {
 /* --- ヘッダー --- */
 .header {
     background-color: transparent;
-    /* 背景透過 */
     padding: 20px 0;
 }
 
@@ -43,14 +40,12 @@ body {
 
 .header__logo h1 {
     font-size: 40px;
-    /* ロゴのフォントサイズ調整 */
     font-weight: normal;
     color: #8b7a67;
     margin: 0;
     text-decoration: none;
 }
 
-/* ログイン・ログアウトボタン */
 .header-nav {
     list-style: none;
     margin: 0;
@@ -66,5 +61,4 @@ body {
     text-decoration: none;
     padding: 5px 10px;
     font-family: inherit;
-    /* ログアウトボタンなどがロゴと縦方向で揃うように調整 */
 }

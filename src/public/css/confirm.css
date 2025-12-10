@@ -1,4 +1,4 @@
-/*サブタイトル*/
+
 .form-subtitle {
     text-align: center;
     font-size: 2.5em;
@@ -8,7 +8,6 @@
     color: #8b7a67;
 }
 
-/*確認テーブルのレイアウト*/
 .confirm-table {
     width: 100%;
     margin-top: 30px;
@@ -61,13 +60,11 @@
     white-space: pre-wrap;
 }
 
-/*アクションボタンの調整*/
 .form-actions {
     text-align: center;
     margin-top: 30px;
 }
 
-/*送信ボタン*/
 .submit-button {
     padding: 12px 30px;
     font-size: 1em;
@@ -84,7 +81,6 @@
     background-color: #8b7a67;
 }
 
-/*修正ボタン*/
 .back-button {
     background: none;
     color: #000;

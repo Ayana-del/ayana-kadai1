@@ -1,6 +1,3 @@
-/* contact.css */
-
-/* --- ページ全体 --- */
 .container {
     max-width: 1000px;
     padding: 60px 20px;
@@ -13,7 +10,6 @@
     text-align: center;
     margin-bottom: 40px;
     color: #8b7a67;
-    /* FashionablyLateと同じ茶色 */
 }
 
 /* --- フォームグループ --- */
@@ -21,55 +17,41 @@
     padding: 30px;
     background-color: #f7f7f7;
     border-radius: 5px;
-    /* デザイン画像にシャドウがないように見えるため、削除または薄くする */
     box-shadow: none;
 }
 
 .form-group,
 .form-row {
     display: flex;
-    /* ラベルと入力欄を横並びにする */
     align-items: flex-start;
-    /* ラベルと入力欄の開始位置を合わせる */
     margin-bottom: 35px;
     flex-wrap: wrap;
 }
 
-/* --- ラベル（左側）--- */
 .form-label {
     width: 35%;
-    /* ラベルの幅を固定 */
     min-width: 150px;
-    /* 最小幅を確保し、折り返しを防ぐ */
     font-size: 16px;
     font-weight: normal;
     padding-right: 20px;
     padding-top: 10px;
-    /* 入力欄のパディングに合わせて調整 */
     box-sizing: border-box;
 }
 
-/* 必須マーク（赤色のアスタリスク）のスタイル */
 .form-group.required .form-label::after {
     content: "※";
     color: #e57373;
-    /* 明るい赤色 */
     margin-left: 5px;
     font-size: 14px;
 }
 
-
-/* --- 入力欄（右側）--- */
 .form-input-wrapper,
 .name-group,
 .form-input-split {
     flex-grow: 1;
-    /* 残りのスペースを全て使用 */
-    /* ラベルのpadding-topに合わせて、入力欄のコンテナを上部に寄せます */
     align-items: flex-start;
 }
 
-/* テキスト入力フィールド、テキストエリア、セレクトボックスの基本スタイル */
 input[type="text"],
 input[type="email"],
 textarea,
@@ -77,21 +59,17 @@ select {
     width: 100%;
     padding: 10px;
     border: none;
-    /* デザイン画像に合わせて枠線を削除 */
     background-color: #e0e0e0;
-    /* 薄いグレーの背景 */
     border-radius: 3px;
     font-size: 15px;
     box-sizing: border-box;
     color: #333;
     outline: none;
-    /* デザイン画像の高さに合わせるため、heightを設定しても良い */
     height: 40px;
 }
 
 textarea {
     height: auto;
-    /* textareaは自動の高さに戻す */
     min-height: 100px;
     padding: 10px;
 }
@@ -102,7 +80,6 @@ textarea::placeholder {
     font-size: 14px;
 }
 
-/* --- お名前欄の分割 --- */
 .name-group {
     display: flex;
     gap: 15px;
@@ -112,13 +89,10 @@ textarea::placeholder {
     flex: 1;
 }
 
-/* --- 性別ラジオボタン --- */
 .gender-radios {
-    /* ラジオボタンをフォーム開始位置に合わせるため、align-itemsをflex-startに */
     display: flex;
     align-items: flex-start;
     padding-top: 10px;
-    /* ラベルのパディングに合わせて調整 */
 }
 
 .gender-radios label {
@@ -129,13 +103,11 @@ textarea::placeholder {
 }
 
 .gender-radios input[type="radio"] {
-    /* ラジオボタンのカスタムデザイン（デザイン画像に合わせて丸い色を再現） */
     width: 18px;
     height: 18px;
     margin-right: 5px;
     appearance: none;
     border: 1px solid #333;
-    /* 枠線を濃い色に */
     border-radius: 50%;
     background-color: #fff;
     cursor: pointer;
@@ -146,14 +118,9 @@ textarea::placeholder {
 .gender-radios input[type="radio"]:checked {
     background-color: #333;
     border-color: #333;
-    /* 選択された際の茶色い丸を再現するため、以下のスタイルを適用 */
     background-color: #8b7a67;
     border-color: #8b7a67;
 }
-
-
-/* --- 電話番号の分割（1行表示）--- */
-/* .form-row に display: flex が適用されているため、このままでは入力欄の下にエラーメッセージが縦に並びます */
 
 .form-input-split {
     display: flex;
@@ -172,14 +139,10 @@ textarea::placeholder {
     color: #666;
 }
 
-/* --- バリデーションエラーを電話番号の入力欄と同じ行に配置する修正 --- */
-/* HTMLでエラーが .form-row の直下にあるため、ここで電話番号の横に配置します */
 .form-row {
     flex-wrap: wrap;
-    /* 子要素を折り返す */
 }
 
-/* エラーメッセージが入力欄の幅に合わせて右側に表示されるように調整 */
 .validation-error {
     color: #e57373;
     font-size: 14px;
@@ -198,7 +161,6 @@ textarea::placeholder {
     margin-left: 35%;
 }
 
-/* --- 確認画面ボタン --- */
 .form-actions {
     text-align: center;
     margin-top: 50px;
@@ -206,7 +168,6 @@ textarea::placeholder {
 
 .submit-button {
     background-color: #8b7a67;
-    /* 薄い茶色に変更 */
     color: #fff;
     border: none;
     padding: 10px 40px;
@@ -223,20 +184,14 @@ textarea::placeholder {
 .form-input-split {
     display: flex;
     align-items: flex-start;
-    /* エラーが出ても入力欄が動かないように */
     flex-grow: 1;
 }
 
 .form-input-third {
-    /* 電話番号の3分割領域 */
     flex: 1;
-    /* エラーメッセージが縦に並ばないよう、このコンテナ内で flex-wrap: wrap; は不要 */
 }
 
 .form-input-split .validation-error {
-    /* 電話番号のエラーは input の直下に配置されるため、親要素の幅に合わせる */
     width: 100%;
     margin-left: 0;
-    /* マージンをリセット */
-    /* 電話番号のエラーは input の下に表示されます */
 }
