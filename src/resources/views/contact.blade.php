@@ -51,7 +51,7 @@
         @error('email') <div class="validation-error">{{ $message }}</div> @enderror
     </div>
 
-    <div class="form-row required">
+    <div class="form-group required">
         <div class="form-label">電話番号</div>
         <div class="form-input-split">
             <input type="text" name="tel1" value="{{ old('tel1') }}" maxlength="5" placeholder="090" required>
