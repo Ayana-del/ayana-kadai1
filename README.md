@@ -26,7 +26,7 @@ OS:macOS
   
 リポジトリのクローン  
 ```bash
-git clone git clone git@github.com:Ayana-del/ayana-kadai1.git
+git clone git@github.com:Ayana-del/ayana-kadai1.git
 ```  
 ```bash  
 cd ayana-kadai1
@@ -61,6 +61,7 @@ php artisan migrate:fresh --seed
 ### アクセス  
 アプリケーションは以下のURLでアクセス可能です。  
 | 画面 | URL |  
+| ---- | ---- |
 | **データベース管理** | 'http://localhost:8080'  
 | **入力画面** | 'http://localhost/' |  
 | **確認画面** | 'http://localhost/confirm/' |  
@@ -152,8 +153,6 @@ php artisan migrate:fresh --seed
 * **使用技術**:Laravel Fortify  
 ・管理画面のヘッダーにある「logout」ボタンをクリックすることで、正常にログアウト処理が完了します。
 
-
-READ
 
 ## ER 図
 
