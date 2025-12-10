@@ -50,7 +50,7 @@ class ContactController extends Controller
         $tel_full = $validatedData['tel1'] . $validatedData['tel2'] . $validatedData['tel3'];
         $validatedData['tel'] = $tel_full;
 
-
+        
         $request->session()->put('contact_data', $validatedData);
 
         $categoryName = Category::find($validatedData['category_id'])->content;

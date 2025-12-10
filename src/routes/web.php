@@ -17,7 +17,7 @@ Route::match(['get', 'post'], '/confirm', [ContactController::class, 'confirmOrS
 Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
 
 
-Route::middleware(['auth', 'can:admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::redirect('/', '/admin/contacts')->name('admin.index');
     Route::get('/contacts/reset', [AdminContactController::class, 'reset'])->name('admin.contacts.reset');
     Route::get('/contacts', [AdminContactController::class, 'index'])->name('admin.contacts.index');

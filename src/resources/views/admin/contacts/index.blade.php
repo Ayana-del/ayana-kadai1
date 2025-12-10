@@ -1,7 +1,6 @@
 @extends('layouts.common')
 
 @section('title', 'Admin | FashionablyLate')
-
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
@@ -88,18 +87,7 @@
                     <td class="table-data category-cell">{{ $contact->category->content ?? '-' }}</td>
                     <td class="table-data detail-cell">
                         <button type="button" class="button button-detail"
-                            data-contact='@json([
-                            ' id'=> $contact->id,
-                            'full_name' => $contact->last_name . ' ' . $contact->first_name,
-                            'gender' => ($contact->gender == 1) ? '男性' : (($contact->gender == 2) ? '女性' : '不明'),
-                            'email' => $contact->email,
-                            'tel' => $contact->tel,
-                            'address' => $contact->address,
-                            'building' => $contact->building ?? '-',
-                            'category_content' => $contact->category->content ?? 'カテゴリなし',
-                            'detail' => $contact->detail,
-                            'created_at' => $contact->created_at->format('Y/m/d H:i')
-                            ])'>
+                            data-contact="">
                             詳細
                         </button>
                     </td>
