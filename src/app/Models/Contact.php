@@ -10,44 +10,77 @@ class Contact extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category_id' , 'first_name' , 'last_name' , 'gender' , 'email' , 'tel' , 'address' , 'building' , 'detail'
+        'category_id',
+        'first_name',
+        'last_name',
+        'gender',
+        'email',
+        'tel',
+        'address',
+        'building',
+        'detail'
     ];
+
+    // JSONシリアル化時やBladeで使うアクセサを設定
+    protected $appends = ['gender_text', 'full_name', 'tel_without_hyphen'];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
+    // 性別テキスト変換アクセサ (FN025)
+    public function getGenderTextAttribute()
+    {
+        return [
+            '1' => '男性',
+            '2' => '女性',
+            '3' => 'その他',
+        ][$this->gender] ?? 'その他';
+    }
+
+    // フルネームアクセサ
+    public function getFullNameAttribute()
+    {
+        return "{$this->last_name} {$this->first_name}";
+    }
+
+    // ハイフンなし電話番号アクセサ (FN006-4a)
+    public function getTelWithoutHyphenAttribute()
+    {
+        return str_replace('-', '', $this->tel ?? '');
+    }
+
     /**
-     * スコープ: 名前またはメールアドレスで検索
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string|null $nameOrEmail
-     * @return \Illuminate\Database\Eloquent\Builder
+     * スコープ: 名前（姓/名/フルネーム）またはメールアドレスで検索 (FN022)
      */
     public function scopeNameOrEmailSearch($query, $nameOrEmail)
     {
         if (!empty($nameOrEmail)) {
-            $keywords = preg_split('/[\s,]+/', $nameOrEmail, -1, PREG_SPLIT_NO_EMPTY);
+            $nameOrEmail = trim(mb_convert_kana($nameOrEmail, 's'));
 
-            $query->where(function ($q) use ($keywords, $nameOrEmail) {
-                foreach ($keywords as $keyword) {
-                    $q->orWhere('last_name', 'like', "%{$keyword}%")
-                        ->orWhere('first_name', 'like', "%{$keyword}%");
+            $query->where(function ($q) use ($nameOrEmail) {
+                // メールアドレスの部分一致
+                $q->where('email', 'like', "%{$nameOrEmail}%");
+
+                // 姓または名の部分一致
+                $q->orWhere('last_name', 'like', "%{$nameOrEmail}%")
+                    ->orWhere('first_name', 'like', "%{$nameOrEmail}%");
+
+                // フルネーム（スペースなし）での部分一致
+                $fullNameWithoutSpace = str_replace(' ', '', $nameOrEmail);
+                if (!empty($fullNameWithoutSpace)) {
+                    $q->orWhereRaw("CONCAT(last_name, first_name) LIKE ?", ["%{$fullNameWithoutSpace}%"]);
                 }
-                $q->orWhere('email', 'like', "%{$nameOrEmail}%");
+
+                // フルネーム（スペースあり）での部分一致
+                $q->orWhereRaw("CONCAT(last_name, ' ', first_name) LIKE ?", ["%{$nameOrEmail}%"]);
             });
         }
         return $query;
     }
 
-    /**
-     * スコープ: 性別で検索
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string|null $gender
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
+    // 性別検索スコープ (FN022)
     public function scopeGenderSearch($query, $gender)
     {
         if (!empty($gender) && in_array($gender, ['1', '2', '3'])) {
@@ -56,13 +89,7 @@ class Contact extends Model
         return $query;
     }
 
-    /**
-     * スコープ: お問い合わせの種類（カテゴリID）で検索
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string|null $category
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
+    // カテゴリ検索スコープ (FN022)
     public function scopeCategorySearch($query, $category)
     {
         if (!empty($category)) {
@@ -71,20 +98,12 @@ class Contact extends Model
         return $query;
     }
 
-    /**
-     * スコープ: 作成日時（日付）で検索
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string|null $date
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
+    // 日付検索スコープ (FN022)
     public function scopeDateSearch($query, $date)
     {
-        // $date は 'YYYY-MM-DD' 形式を期待
         if (!empty($date)) {
             $query->whereDate('created_at', $date);
         }
         return $query;
     }
 }
-

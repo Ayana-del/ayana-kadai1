@@ -16,6 +16,10 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('content', 255)->comment('お問い合わせの種類');
+            //「いつ誰がそのお問い合わせの種類を登録したか。」
+            //「最後にいつそのカテゴリ名が変更されたか」
+            //データのライフサイクルの追跡ができるように必ず記述する。
+            $table->timestamps();
         });
     }
 
